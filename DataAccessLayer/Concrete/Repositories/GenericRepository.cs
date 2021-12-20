@@ -13,19 +13,27 @@ namespace DataAccessLayer.Concrete.Repositories
     public class GenericRepository<T> : IRepository<T> where T : class
     {
         Context c = new Context();
-        DbSet<T> _object; //T değerine karşılık gelecek olan yapıyı nasıl bulacaz: constructer ile
+        DbSet<T> _object; //T değerine karşılık gelecek olan yapıyı nasıl bulacaz: constructer ile 
 
         //constructer oluştu. sınıfla aynı isim olmali
         //
-        public GenericRepository()
+        public GenericRepository() //ilk bu kod çalışr. 
         {
-            _object = c.Set<T>();
+            _object = c.Set<T>(); //bu kod ile objectimiz artık entitiyden gelecek olan tablolardan biri olacak.
         }
 
         public void Delete(T p)
         {
             _object.Remove(p);
             c.SaveChanges();
+        }
+        //video 37 de eklendi
+
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            //singleor.. bir dizide veya listede sadece bir tane değer göndermek için yapılan linq kodu
+            return _object.SingleOrDefault(filter);
+           
         }
 
         public void Insert(T p)

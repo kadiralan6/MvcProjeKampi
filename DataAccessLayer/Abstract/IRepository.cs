@@ -15,6 +15,8 @@ namespace DataAccessLayer.Abstract
         List<T> List();
         void Insert(T p);
         void Delete(T p);
+        //Id sini çağıracak olursak bunu yazmamız lazım 37.video
+        T Get(Expression<Func<T, bool>> filter);
         void Update(T p);
         //şartlı listeleme mesela sadece adı ali olanlar gelecek
         List<T> List(Expression<Func<T, bool>> filter);

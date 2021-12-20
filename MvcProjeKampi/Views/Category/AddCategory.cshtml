@@ -1,0 +1,47 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<h1> Yeni Kategori Eklee Sayfası</h1>
+<br />
+@* method=post form tagı içerisindeki işlmeler ne zaman çalışssın post olunca çalışssn yani sayfaa işlem olunca *@
+@* Kategori ekleme araçları input-htmlhelper *@
+<!--<form method="post" class="form-group">-->
+
+    @* veri almak için , input texbox oluşturduk . inputun, kategorideki hangi sutuna tekabül ettiğini bilmek için name ataması yapıyoruz. name adi tablodaki isimle ayni olmasi gerek *@
+    <!--<input type="text" class="form-control" name="CategoryName" placeholder="Kategori Adi" />
+    <br />
+    <input type="text" class="form-control" name="CategoryDescription" placeholder="Açıklama giriniz "/>
+    <br />
+    <button class="btn btn-primary" style="margin-left:5px">Ekle</button>
+
+</form>-->
+
+@* 32.video beginform=genelde ekleme veya güncellemede kullanılır. bu başlangıc formu süslü parantez içerisindekilerin nerede ne zman işlem yapılacagını gösterir
+    1.üzerinde çalışılan actıon ismi
+    2.Calıstıgın controller ismi
+    3. form method ne zma calışcak
+    *@
+@using (Html.BeginForm("AddCategory","Category",FormMethod.Post))
+{
+<div class="form-group   text-success"  >
+    @Html.Label("Kategori Adı")
+    @* üzerinde çalıştıgın modele göre geliyor x. dan sonra *@
+    @Html.TextBoxFor(x => x.CategoryName)
+    @Html.ValidationMessageFor(x => x.CategoryName)
+    <br /><br />
+    @Html.Label("Açıklamayi Yaziniz")
+    @Html.TextBoxFor(x => x.CategoryDescription)
+    @Html.ValidationMessageFor(x => x.CategoryDescription)
+
+    <br /> <br />
+           <button class="btn btn-info"> Kaydet</button>
+           
+
+   
+</div>
+}
